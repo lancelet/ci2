@@ -19,8 +19,8 @@
 set -o nounset
 set -o errexit
 
-[ -e Dockerfile ] && sed -i -r "s|(^FROM $1:).*$|\1$2|g" Dockerfile
+[ -e Dockerfile ] && sed -i.bak "s|\(^FROM $1:\).*$|\1$2|g" Dockerfile
 
 for f in */Dockerfile; do
-  [ -e $f ] && sed -i -r "s|(^FROM $1:).*$|\1$2|g" $f
+  [ -e $f ] && sed -i.bak "s|\(^FROM $1:\).*$|\1$2|g" $f
 done

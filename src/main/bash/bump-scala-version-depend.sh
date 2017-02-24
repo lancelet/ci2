@@ -19,14 +19,16 @@
 set -o nounset
 set -o errexit
 
+restr="s/\\(.*depend\\.$1(\\\"$2\\\", *\\\"\\)[^\\\"]*/\\1$3/g"
+
 for f in *.sbt; do
-  [ -e $f ] && sed -i -r "s/(.*depend\.$1\(\"$2\", +\")[^\"]+/\1$3/g" $f
+  [ -e $f ] && sed -i.bak "$restr" $f
 done
 
 for f in project/*.scala; do
-  [ -e $f ] && sed -i -r "s/(.*depend\.$1\(\"$2\", +\")[^\"]+/\1$3/g" $f
+  [ -e $f ] && sed -i.bak "$restr" $f
 done
 
 for f in project/*.sbt; do
-  [ -e $f ] && sed -i -r "s/(.*depend\.$1\(\"$2\", +\")[^\"]+/\1$3/g" $f
+  [ -e $f ] && sed -i.bak "$restr" $f
 done
