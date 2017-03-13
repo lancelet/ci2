@@ -19,7 +19,7 @@
 # Example Usage:
 # ./ci/dockermake.sh build myimage1 myimage2 --build-arg=someval
 
-set -x
+set -u
 
 # Library import helper
 function import() {
